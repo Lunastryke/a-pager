@@ -1,0 +1,30 @@
+{
+  "name": "a-pager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lunastryke/a-pager.git"
+  },
+  "author": "Lim Xuan Hao, Chan Jun Ren, Francis Low",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lunastryke/a-pager/issues"
+  },
+  "homepage": "https://github.com/Lunastryke/a-pager#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
