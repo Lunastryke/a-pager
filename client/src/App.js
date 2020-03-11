@@ -1,23 +1,15 @@
-import React from "react";
-
-// Redux
-import { Provider } from "react-redux";
-import store from "./store";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import UrlForm from "./components/UrlForm";
-import Webpage from "./components/Webpage";
-
-import Container from "react-bootstrap/Container";
+import React, { Fragment, useState } from 'react';
+import Webpage from './components/Webpage';
+import UrlForm from './components/UrlForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
+  const [data, setData] = useState('');
   return (
-    <Provider store={store}>
-      <Container>
-        <UrlForm />
-        <Webpage />
-      </Container>
-    </Provider>
+    <Fragment>
+      <UrlForm setData={setData} />
+      <Webpage data={data} />
+    </Fragment>
   );
 };
 

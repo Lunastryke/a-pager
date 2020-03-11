@@ -1,11 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
-const Webpage = () => {
-  return (
-    <Fragment>
-      <h2>Filler page</h2>
-    </Fragment>
-  );
+import Container from 'react-bootstrap/Container';
+const Webpage = ({ data }) => {
+  return <Container>{data}</Container>;
 };
 
 export default Webpage;

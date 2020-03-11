@@ -1,24 +1,38 @@
-import React, { Fragment } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import React, { useState } from 'react';
 
-const UrlForm = () => {
-  const onSubmit = e => {
+import { loadPage } from '../api/loadPage';
+
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+
+const UrlForm = ({ setData }) => {
+  const [input, setInput] = useState('');
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    // Update URL state here
+    let res = await loadPage(input);
+    setData(res.data);
   };
+
   return (
-    <Fragment>
-      <h1 className="text-center">A Pager</h1>
-      <Form>
-        <Form.Group controlId="formBasicPassword">
-          <Form.Control type="url" placeholder="Enter URL here" size="lg" />
+    <Container>
+      <h1 className='text-center'>A Pager</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId='formUrl'>
+          <Form.Control
+            type='url'
+            placeholder='Enter URL here'
+            size='lg'
+            value={input}
+            onChange={e => setInput(e.target.value)}
+          />
         </Form.Group>
-        <Button variant="primary" size="lg" type="submit" block>
+        <Button variant='primary' size='lg' type='submit' block>
           Submit
         </Button>
       </Form>
-    </Fragment>
+    </Container>
   );
 };
 
