@@ -1,10 +1,9 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const loadPageRoutes = require('./routes/loadPageRoutes');
 
 const app = express();
-
-app.use(cors()); // Use this after the variable declaration
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -15,6 +14,10 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+// Route handling and middlewares
+app.use(cors());
+app.use(loadPageRoutes);
 
+// Starting server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
