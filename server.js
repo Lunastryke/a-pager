@@ -5,6 +5,10 @@ const loadPageRoutes = require('./routes/loadPageRoutes');
 
 const app = express();
 
+// Route handling and middlewares
+app.use(cors());
+app.use(loadPageRoutes);
+
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
@@ -13,10 +17,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
-// Route handling and middlewares
-app.use(cors());
-app.use(loadPageRoutes);
 
 // Starting server
 const PORT = process.env.PORT || 5000;

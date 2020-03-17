@@ -1,5 +1,5 @@
+// For development environment only, does not affect prod environment
 const proxy = require('http-proxy-middleware');
-// const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
   // Amazon
