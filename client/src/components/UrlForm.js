@@ -12,7 +12,8 @@ const UrlForm = ({ setData }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     let res = await loadPage(input);
-    setData(res.data);
+    console.log(res.productTitle.toString().trim());
+    setData(res);
   };
 
   return (
