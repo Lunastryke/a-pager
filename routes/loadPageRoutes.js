@@ -7,7 +7,7 @@ router.route('/gp/*').get((req, res) => {
 
 // Testing
 // Test site: https://github.com/Lunastryke/a-pager
-router.route('/Lunastryke/*').get((req, res) => {
+router.route('https://a-pager.herokuapp.com/Lunastryke/*').get((req, res) => {
   res.redirect('http://www.github.com' + req.url);
 });
 
