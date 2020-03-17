@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
-
+import React from 'react';
 import Container from 'react-bootstrap/Container';
-const Webpage = ({ data }) => {
+
+const Webpage = ({ data: { productTitle } }) => {
   return (
     <Container fluid>
-      {/* {data} */}
-      <td dangerouslySetInnerHTML={{ __html: data }} />
+      <h1>{productTitle}</h1>
+      <h2>Testing to make sure rendering works</h2>
     </Container>
   );
 };
