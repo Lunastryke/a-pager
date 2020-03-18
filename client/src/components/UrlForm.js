@@ -20,8 +20,8 @@ const UrlForm = ({ setData, data }) => {
   };
 
   function successButtonClick() {
-    var elmnt = document.getElementById("scroll_target_1");
-    elmnt.scrollIntoView({behavior: "smooth"});
+    var elmnt = document.getElementById('scroll_target_1');
+    elmnt.scrollIntoView({ behavior: 'smooth' });
   }
 
   function renderSuccessButton() {
@@ -29,24 +29,45 @@ const UrlForm = ({ setData, data }) => {
       return null;
     } else {
       return (
-      <div style={{textAlign: "center", marginTop: "150px"}}>
-        {data? 
-          <Button style={{fontSize: "12px"}} variant='success' onClick={() =>successButtonClick()}>Successful, Click here!</Button> : 
-          <Spinner animation="border" variant="primary" />
-        }
-      
-      </div>
-      )
+        <div style={{ textAlign: 'center', marginTop: '150px' }}>
+          {data ? (
+            <Button
+              style={{ fontSize: '1.3rem' }}
+              variant='success'
+              onClick={() => successButtonClick()}
+            >
+              Successful, Click here!
+            </Button>
+          ) : (
+            <Spinner animation='border' variant='primary' />
+          )}
+        </div>
+      );
     }
   }
 
   return (
-    <Container style={{ padding: "130px 130px 340px 130px", height: "100vh",}}>
-      <h1 style={{ marginBottom: "30px"}} className='text-center'>A Pager</h1>
-      <Form onSubmit={(e) => {setFetchingData(true); handleSubmit(e); }}>
+    <Container
+      style={{
+        /*backgroundColor: "black",*/ padding: '130px 130px 340px 130px',
+        height: '100vh'
+      }}
+    >
+      <h1
+        style={{ marginBottom: '30px', fontSize: '4rem' }}
+        className='text-center'
+      >
+        A Pager
+      </h1>
+      <Form
+        onSubmit={e => {
+          setFetchingData(true);
+          handleSubmit(e);
+        }}
+      >
         <Form.Group controlId='formUrl'>
           <Form.Control
-            style={{fontSize: "14px"}}
+            style={{ fontSize: '1.3rem' }}
             type='url'
             placeholder='Enter URL here'
             size='lg'
@@ -54,11 +75,17 @@ const UrlForm = ({ setData, data }) => {
             onChange={e => setInput(e.target.value)}
           />
         </Form.Group>
-        <Button style={{fontSize: "12px"}} variant='primary' size='lg' type='submit' block>
+        <Button
+          style={{ fontSize: '1.3rem' }}
+          variant='primary'
+          size='lg'
+          type='submit'
+          block
+        >
           Simplify
         </Button>
       </Form>
-      
+
       {renderSuccessButton()}
     </Container>
   );

@@ -11,17 +11,19 @@ router.route('/ap/*').get((req, res) => {
 });
 
 router.route('/gp/*').post((req, res) => {
-    console.log(req.body);
+  console.log(req.body);
   res.redirect('http://www.amazon.com' + req.url);
 });
 
 router.route('/ap/*').post((req, res) => {
-    console.log(req.body);
+  console.log(req.body);
   res.redirect('http://www.amazon.com' + req.url);
 });
 
 router.route('/loadPage').get(async (req, res) => {
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
   const page = await browser.newPage();
   await page.goto(req.query.siteUrl);
   // Processing page data
@@ -75,20 +77,34 @@ router.route('/loadPage').get(async (req, res) => {
 
   // Ratings
   const [el3] = await page.$x('//*[@id="acrPopover"]');
-  const rating = await el3.getProperty('title');
-  const ratingTxt = await rating.jsonValue();
-  const ratingValue = parseFloat(ratingTxt.split(' ')[0]);
+  var ratingValue;
+  var reviewCountTxt;
+  if (el3) {
+    const rating = await el3.getProperty('title');
+    const ratingTxt = await rating.jsonValue();
+    ratingValue = parseFloat(ratingTxt.split(' ')[0]);
+  } else {
+    ratingValue = '';
+  }
   const [el4] = await page.$x('//*[@id="acrCustomerReviewText"]');
-  const review = await el4.getProperty('textContent');
-  const reviewCountTxt = await review.jsonValue();
+  if (el4) {
+    const review = await el4.getProperty('textContent');
+    reviewCountTxt = await review.jsonValue();
+  } else {
+    reviewCountTxt = '';
+  }
   dataObj.ratings = { ratingValue: ratingValue, ratingCount: reviewCountTxt };
 
   // Descriptions split into array entries based on points
   const [el5] = await page.$x('//*[@id="feature-bullets"]/ul');
-  const desc = await el5.$$eval('.a-list-item', nodes =>
-    nodes.map(n => n.innerText.trim())
-  );
-  // To remove first non-relevant list item
+  var desc;
+  if (el5) {
+    desc = await el5.$$eval('.a-list-item', nodes =>
+      nodes.map(n => n.innerText.trim())
+    );
+  } else {
+    desc = '';
+  }
   dataObj.descriptions = desc;
 
   browser.close();
