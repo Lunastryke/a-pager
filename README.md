@@ -1,6 +1,10 @@
 # a-pager
 Hack for Good 2020 repository for Team Skate Gang
 
+A web-application for parsing amazon.com pages to make them more accessible for people with aphasia. This web application was built with the use of ReactJS, Express, Node.js, Puppeteer and SpeakAPI. 
+
+This site is hosted at [https://a-pager.herokuapp.com/](https://a-pager.herokuapp.com/)
+
 ## Quick Start
 
 ### Install server dependencies
