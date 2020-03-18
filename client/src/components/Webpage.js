@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
+import React, {useState} from 'react';
 import Container from 'react-bootstrap/Container';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import speak from "../api/speech"
+
 /*
 Structure of data object
 data:{
@@ -24,13 +26,18 @@ data:{
 */
 
 const Webpage = ({ data }) => {
-  return !data ? (
-    <Fragment></Fragment>
-  ) : (
-    <Fragment>
-      <Container className='mb-2' fluid>
-        <Jumbotron className='p-3 mb-2'>
-          <Row>
+  const [speakRate, setSpeakRate] = useState(0.5);
+
+  return (
+    <>
+      <div style={{ textAlign: "center" }}>
+      <Container className='mb-2' style={{padding: "200px"}} fluid>
+        <p style={{display: "inline"}} id="scroll_target_1">We have concised the page for you</p>
+        <button className="read_button" onClick={() => speak("We have concised the page for you", speakRate)}>
+          Speak
+        </button>
+        <Jumbotron style={{ border: "1px solid black", backgroundColor: "white" , borderRadius: "5px"}} className='p-3 mb-2'>
+        <Row style={{margin: "50px"}}>
             <Col className='col-3'>
               <Image
                 src={data.image.imgSrc}
@@ -41,13 +48,18 @@ const Webpage = ({ data }) => {
               />
             </Col>
             <Col className='col-9'>
-              <h1>{data.productTitle}</h1>
+              <h1 style={{display: "inline"}} >{data.productTitle}</h1>
+              <button className="read_button" onClick={() => speak(data.productTitle, speakRate)}>
+                Speak
+              </button>
             </Col>
           </Row>
         </Jumbotron>
       </Container>
-      <td className='mt-0' dangerouslySetInnerHTML={{ __html: data.rawHtml }} />
-    </Fragment>
+      </div>
+      <p style={{textAlign: "center"}}>The actual webpage</p>
+      <td style={{ display: "block", width: "95vw", margin: "auto", padding:"50px", border: "1px solid black", borderRadius: "5px"}} dangerouslySetInnerHTML={{ __html: data.rawHtml }} />
+    </>
   );
 };
 

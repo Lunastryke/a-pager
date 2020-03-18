@@ -7,6 +7,7 @@ const app = express();
 
 // Route handling and middlewares
 app.use(cors());
+app.use(express.json()); // express.json() is a method inbuilt in express to recognize the incoming Request Object as a JSON Object
 app.use(loadPageRoutes);
 
 // Serve static assets in production
