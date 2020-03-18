@@ -10,9 +10,11 @@ const UrlForm = ({ setData }) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = async e => {
-    e.preventDefault();
-    let res = await loadPage(input);
-    setData(res);
+    if (input) {
+      e.preventDefault();
+      let result = await loadPage(input);
+      setData(result);
+    }
   };
 
   return (
