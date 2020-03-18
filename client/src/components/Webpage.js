@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import speak from '../api/speech';
+import Form from 'react-bootstrap/Form';
 
 /*
 Structure of data object
@@ -27,14 +28,15 @@ data:{
 */
 
 const Webpage = ({ data }) => {
-  const [speakRate, setSpeakRate] = useState(0.5);
+  // speak rate of 0(slowest) - 2(fastest)
+  const [speakRate, setSpeakRate] = useState(1);
 
   return (
     <>
       <div style={{ textAlign: 'center' }}>
         <Container className='mb-2' style={{ padding: '200px' }} fluid>
           <p
-            style={{ display: 'inline', fontSize: '1.2rem' }}
+            style={{ fontSize: '1.2rem' }}
             id='scroll_target_1'
             onClick={() =>
               speak('We have concised the page for you', speakRate)
@@ -44,13 +46,47 @@ const Webpage = ({ data }) => {
           </p>
           <p
             className='mt-1'
-            style={{ fontSize: '1.4rem' }}
+            style={{ display: 'inline', fontSize: '1.4rem' }}
             onClick={() =>
               speak('Click on any text to have it read out to you!', speakRate)
             }
           >
             Click on any text to have it read out to you!
           </p>
+
+          {/* Rate control slider */}
+
+          <Form style={{ display: 'inline' }}>
+            <Form.Group
+              controlId='formBasicRangeCustom'
+              style={{ display: 'inline' }}
+            >
+              <Form.Label
+                style={{
+                  fontSize: '1.2rem',
+                  textAlign: 'center',
+                  display: 'inline',
+                  marginLeft: '15px',
+                  marginRight: '10px'
+                }}
+                onClick={() => speak('Speak Rate', speakRate)}
+              >
+                Speak Rate:
+              </Form.Label>
+              <Form.Control
+                style={{
+                  textAlign: 'center',
+                  display: 'inline',
+                  width: '15vw',
+                  margin: 'auto'
+                }}
+                type='range'
+                value={speakRate * 50}
+                onChange={e => setSpeakRate(e.target.value * 0.02)}
+              />
+            </Form.Group>
+          </Form>
+
           <Jumbotron
             style={{
               border: '1px solid black',
