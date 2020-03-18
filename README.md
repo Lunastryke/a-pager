@@ -28,3 +28,7 @@ npm run dev
 cd client
 npm run build
 ```
+### Credits and relevant source code reference: 
+
+
+SpeakAPI source code: https://github.com/bradtraversy/type-n-speak
