@@ -58,7 +58,7 @@ const Webpage = ({ data }) => {
    
         <Form style={{display:"inline"}}>
           <Form.Group controlId="formBasicRangeCustom" style={{display:"inline"}} >
-            <Form.Label style={{textAlign: "center", display:"inline", marginLeft: "15px", marginRight: "10px"}}>Speak Rate:</Form.Label>
+            <Form.Label style={{textAlign: "center", display:"inline", marginLeft: "15px", marginRight: "10px"}} onClick={() => speak('Speak Rate', speakRate)} >Speak Rate:</Form.Label>
             <Form.Control style={{textAlign: "center", display:"inline", width: "15vw", margin: "auto"}} type="range" value={speakRate * 50} onChange={(e) => setSpeakRate(e.target.value * 0.02)}/>
           </Form.Group>
         </Form>
