@@ -35,8 +35,9 @@ const UrlForm = ({ setData, data }) => {
               style={{ fontSize: '1.3rem' }}
               variant='success'
               onClick={() => successButtonClick()}
+              block
             >
-              Successful, Click here!
+              Success! Next!
             </Button>
           ) : (
             <Spinner animation='border' variant='primary' />

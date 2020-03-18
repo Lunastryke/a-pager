@@ -4,12 +4,13 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import speak from '../api/speech';
 
 /*
 Structure of data object
 data:{
-  siteUrl,
+  url,
   rawHtml,
   productTitle,
   image: {
@@ -63,8 +64,6 @@ const Webpage = ({ data }) => {
                 <Image
                   src={data.image.imgSrc}
                   alt={data.image.imgAlt}
-                  maxWidth='400px'
-                  maxHeight='400px'
                   rounded
                 />
               </Col>
@@ -104,39 +103,43 @@ const Webpage = ({ data }) => {
                   style={{
                     backgroundColor: '#AEC6CF',
                     borderRadius: '5px',
-                    padding: '1rem',
-                    margin: '0.5rem'
+                    padding: '0.5rem',
+                    margin: '0.5rem',
+                    textAlign: 'left',
+                    width: 'auto'
                   }}
                 >
-                  <p
-                    style={{
-                      display: 'inline',
-                      fontSize: '1.2rem',
-                      textAlign: 'left',
-                      fontWeight: 'bold'
-                    }}
-                    onClick={() =>
-                      speak(
-                        `Rating: ${data.ratings.ratingValue} out of 5`,
-                        speakRate
-                      )
-                    }
-                  >
-                    Rating: {data.ratings.ratingValue} out of 5{' '}
-                  </p>
-                  <p
-                    style={{
-                      display: 'inline',
-                      fontSize: '1.2rem',
-                      textAlign: 'left',
-                      fontWeight: '500'
-                    }}
-                    onClick={() =>
-                      speak(`${data.ratings.ratingCount}`, speakRate)
-                    }
-                  >
-                    {data.ratings.ratingCount}
-                  </p>
+                  {data.ratings.ratingValue ? (
+                    <p
+                      style={{
+                        display: 'inline',
+                        fontSize: '1.2rem',
+                        textAlign: 'left',
+                        fontWeight: 'bold'
+                      }}
+                      onClick={() =>
+                        speak(
+                          `Rating: ${data.ratings.ratingValue} out of 5, ${data.ratings.ratingCount}`,
+                          speakRate
+                        )
+                      }
+                    >
+                      Rating: {data.ratings.ratingValue} out of 5 |{' '}
+                      {data.ratings.ratingCount}
+                    </p>
+                  ) : (
+                    <p
+                      style={{
+                        display: 'inline',
+                        fontSize: '1.2rem',
+                        textAlign: 'left',
+                        fontWeight: 'bold'
+                      }}
+                      onClick={() => speak(`No ratings available`, speakRate)}
+                    >
+                      No ratings available
+                    </p>
+                  )}
                 </div>
                 <p
                   className='mt-4'
@@ -191,6 +194,16 @@ const Webpage = ({ data }) => {
                 </div>
               </Col>
             </Row>
+            <Button
+              style={{
+                fontSize: '1.4rem'
+              }}
+              variant='primary'
+              onClick={() => window.open(data.url, '_blank')}
+              block
+            >
+              Buy Now!
+            </Button>
           </Jumbotron>
         </Container>
       </div>
