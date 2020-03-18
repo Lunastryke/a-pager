@@ -18,11 +18,12 @@ const UrlForm = ({ setData }) => {
   };
 
   return (
-    <Container>
-      <h1 className='text-center'>A Pager</h1>
+    <Container style={{ /*backgroundColor: "black",*/ padding: "130px 130px 340px 130px"}}>
+      <h1 style={{ marginBottom: "40px"}} className='text-center'>A Pager</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='formUrl'>
           <Form.Control
+            style={{fontSize: "14px"}}
             type='url'
             placeholder='Enter URL here'
             size='lg'
@@ -30,8 +31,8 @@ const UrlForm = ({ setData }) => {
             onChange={e => setInput(e.target.value)}
           />
         </Form.Group>
-        <Button variant='primary' size='lg' type='submit' block>
-          Submit
+        <Button style={{fontSize: "12px"}} variant='primary' size='lg' type='submit' block>
+          Simplify
         </Button>
       </Form>
     </Container>

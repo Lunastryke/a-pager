@@ -10,9 +10,11 @@ const Webpage = ({ data }) => {
     <Fragment></Fragment>
   ) : (
     <Fragment>
-      <Container fluid>
-        <Jumbotron className='p-3'>
-          <Row>
+      <div style={{ textAlign: "center" }}>
+      <Container style={{padding: "150px"}} fluid>
+        <p>We have concised the page for you</p>
+        <Jumbotron style={{ border: "1px solid black", backgroundColor: "white" , borderRadius: "5px"}} className='p-3'>
+          <Row style={{margin: "50px"}}>
             <Col className='col-3'>
               <Image
                 src={data.image.imgSrc}
@@ -28,7 +30,9 @@ const Webpage = ({ data }) => {
           </Row>
         </Jumbotron>
       </Container>
-      <td dangerouslySetInnerHTML={{ __html: data.rawHtml }} />
+      </div>
+      <p style={{textAlign: "center"}}>The actual webpage</p>
+      <td style={{padding: "50px", border: "1px solid black", borderRadius: "5px"}} dangerouslySetInnerHTML={{ __html: data.rawHtml }} />
     </Fragment>
   );
 };
