@@ -19,7 +19,7 @@ const UrlForm = ({ setData }) => {
 
   return (
     <Container style={{ /*backgroundColor: "black",*/ padding: "130px 130px 340px 130px"}}>
-      <h1 style={{ marginBottom: "40px"}} className='text-center'>A Pager</h1>
+      <h1 style={{ marginBottom: "30px"}} className='text-center'>A Pager</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='formUrl'>
           <Form.Control
