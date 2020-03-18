@@ -4,14 +4,32 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+/*
+Structure of data object
+data:{
+  siteUrl,
+  rawHtml,
+  productTitle,
+  image: {
+    imgSrc,
+    imgAlt
+  },
+  price,
+  ratings: {
+    ratingValue: float,
+    ratingCount
+  },
+  descriptions: []
+}
+*/
 
 const Webpage = ({ data }) => {
   return !data ? (
     <Fragment></Fragment>
   ) : (
     <Fragment>
-      <Container fluid>
-        <Jumbotron className='p-3'>
+      <Container className='mb-2' fluid>
+        <Jumbotron className='p-3 mb-2'>
           <Row>
             <Col className='col-3'>
               <Image
@@ -28,7 +46,7 @@ const Webpage = ({ data }) => {
           </Row>
         </Jumbotron>
       </Container>
-      <td dangerouslySetInnerHTML={{ __html: data.rawHtml }} />
+      <td className='mt-0' dangerouslySetInnerHTML={{ __html: data.rawHtml }} />
     </Fragment>
   );
 };
