@@ -9,7 +9,7 @@ const App = () => {
   return (
     <Fragment>
       <UrlForm className="url_form" data={data} setData={setData} />
-      <Webpage className="loaded_page" data={data} />
+      {data ? <Webpage className="loaded_page" data={data} /> : <></>}
     </Fragment>
   );
 };

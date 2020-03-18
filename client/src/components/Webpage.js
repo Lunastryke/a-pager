@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Container from 'react-bootstrap/Container';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import speak from "../api/speech"
+
 /*
 Structure of data object
 data:{
@@ -24,13 +26,16 @@ data:{
 */
 
 const Webpage = ({ data }) => {
-  return !data ? (
-    <></>
-  ) : (
+  const [speakRate, setSpeakRate] = useState(0.5);
+
+  return (
     <>
       <div style={{ textAlign: "center" }}>
       <Container className='mb-2' style={{padding: "200px"}} fluid>
-        <p id="scroll_target_1">We have concised the page for you</p>
+        <p style={{display: "inline"}} id="scroll_target_1">We have concised the page for you</p>
+        <button className="read_button" onClick={() => speak("We have concised the page for you", speakRate)}>
+          Speak
+        </button>
         <Jumbotron style={{ border: "1px solid black", backgroundColor: "white" , borderRadius: "5px"}} className='p-3 mb-2'>
         <Row style={{margin: "50px"}}>
             <Col className='col-3'>
@@ -43,7 +48,10 @@ const Webpage = ({ data }) => {
               />
             </Col>
             <Col className='col-9'>
-              <h1>{data.productTitle}</h1>
+              <h1 style={{display: "inline"}} >{data.productTitle}</h1>
+              <button className="read_button" onClick={() => speak(data.productTitle, speakRate)}>
+                Speak
+              </button>
             </Col>
           </Row>
         </Jumbotron>
