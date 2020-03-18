@@ -4,6 +4,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 import speak from "../api/speech"
 
 /*
@@ -26,7 +27,8 @@ data:{
 */
 
 const Webpage = ({ data }) => {
-  const [speakRate, setSpeakRate] = useState(0.5);
+  // speak rate of 0(slowest) - 2(fastest)
+  const [speakRate, setSpeakRate] = useState(1);
 
   return (
     <>
@@ -36,6 +38,13 @@ const Webpage = ({ data }) => {
         <button className="read_button" onClick={() => speak("We have concised the page for you", speakRate)}>
           Speak
         </button>
+        {/* Rate control slider */}
+      <Form>
+        <Form.Group controlId="formBasicRangeCustom">
+          <Form.Label style={{textAlign: "center"}}>Speak Rate</Form.Label>
+          <Form.Control style={{textAlign: "center", width: "35vw", margin: "auto"}} type="range" value={speakRate * 50} onChange={(e) => setSpeakRate(e.target.value * 0.02)}/>
+        </Form.Group>
+      </Form>
         <Jumbotron style={{ border: "1px solid black", backgroundColor: "white" , borderRadius: "5px"}} className='p-3 mb-2'>
         <Row style={{margin: "50px"}}>
             <Col className='col-3'>

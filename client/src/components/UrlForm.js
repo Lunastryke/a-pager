@@ -41,7 +41,7 @@ const UrlForm = ({ setData, data }) => {
   }
 
   return (
-    <Container style={{ /*backgroundColor: "black",*/ padding: "130px 130px 340px 130px", height: "100vh",}}>
+    <Container style={{ padding: "130px 130px 340px 130px", height: "100vh",}}>
       <h1 style={{ marginBottom: "30px"}} className='text-center'>A Pager</h1>
       <Form onSubmit={(e) => {setFetchingData(true); handleSubmit(e); }}>
         <Form.Group controlId='formUrl'>
