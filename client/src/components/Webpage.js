@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image';
@@ -25,12 +25,12 @@ data:{
 
 const Webpage = ({ data }) => {
   return !data ? (
-    <Fragment></Fragment>
+    <></>
   ) : (
-    <Fragment>
+    <>
       <div style={{ textAlign: "center" }}>
-      <Container className='mb-2' style={{padding: "150px"}} fluid>
-        <p>We have concised the page for you</p>
+      <Container className='mb-2' style={{padding: "200px"}} fluid>
+        <p id="scroll_target_1">We have concised the page for you</p>
         <Jumbotron style={{ border: "1px solid black", backgroundColor: "white" , borderRadius: "5px"}} className='p-3 mb-2'>
         <Row style={{margin: "50px"}}>
             <Col className='col-3'>
@@ -50,9 +50,8 @@ const Webpage = ({ data }) => {
       </Container>
       </div>
       <p style={{textAlign: "center"}}>The actual webpage</p>
-      <td style={{padding: "50px", border: "1px solid black", borderRadius: "5px"}} className='mt-0' dangerouslySetInnerHTML={{ __html: data.rawHtml }} />
-
-    </Fragment>
+      <td style={{ display: "block", width: "95vw", margin: "auto", padding:"50px", border: "1px solid black", borderRadius: "5px"}} dangerouslySetInnerHTML={{ __html: data.rawHtml }} />
+    </>
   );
 };
 

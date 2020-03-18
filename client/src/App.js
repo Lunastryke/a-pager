@@ -8,8 +8,7 @@ const App = () => {
   const [data, setData] = useState('');
   return (
     <Fragment>
-      <UrlForm className="url_form" setData={setData} />
-      {/* <button style={{textAlign: "center"}} >Its done</button> */}
+      <UrlForm className="url_form" data={data} setData={setData} />
       <Webpage className="loaded_page" data={data} />
     </Fragment>
   );
