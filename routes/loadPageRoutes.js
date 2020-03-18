@@ -16,8 +16,9 @@ router.route('/loadPage').get(async (req, res) => {
   await page.goto(req.query.siteUrl);
   // Processing page data
   const dataObj = {};
-  // Site Url
-  dataObj.url = req.query.siteUrl;
+  // Site html
+  let bodyHTML = await page.evaluate(() => document.documentElement.outerHTML);
+  dataObj.rawHtml = bodyHTML;
   // Product title
   const [el] = await page.$x('//*[@id="productTitle"]');
   const txt = await el.getProperty('textContent');

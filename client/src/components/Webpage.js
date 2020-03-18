@@ -28,7 +28,7 @@ const Webpage = ({ data }) => {
           </Row>
         </Jumbotron>
       </Container>
-      <td dangerouslySetInnerHTML={{ __html: rawHtml }} />
+      <td dangerouslySetInnerHTML={{ __html: data.rawHtml }} />
     </Fragment>
   );
 };
