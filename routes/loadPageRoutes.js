@@ -25,6 +25,19 @@ router.route('/loadPage').get(async (req, res) => {
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
+  await page.setRequestInterception(true);
+
+  page.on('request', req => {
+    if (
+      req.resourceType() == 'stylesheet' ||
+      req.resourceType() == 'font' ||
+      req.resourceType() == 'image'
+    ) {
+      req.abort();
+    } else {
+      req.continue();
+    }
+  });
   await page.goto(req.query.siteUrl);
   // Processing page data
   const dataObj = {};
