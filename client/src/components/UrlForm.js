@@ -33,6 +33,7 @@ const UrlForm = ({ setData, data }) => {
         {data ? (
           <Button
             style={{ fontSize: '1.3rem' }}
+            className='shadow'
             variant='success'
             onClick={() => successButtonClick()}
             block
@@ -82,6 +83,7 @@ const UrlForm = ({ setData, data }) => {
           variant='primary'
           size='lg'
           type='submit'
+          className='shadow'
           block
         >
           Simplify

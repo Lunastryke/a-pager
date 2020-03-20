@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import speak from '../api/speech';
+import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
+import speak from '../api/speech';
 
 /*
 Structure of data object
@@ -87,14 +89,7 @@ const Webpage = ({ data }) => {
             </Form.Group>
           </Form>
 
-          <Jumbotron
-            style={{
-              border: '1px solid black',
-              backgroundColor: 'white',
-              borderRadius: '5px'
-            }}
-            className='p-3 mb-2'
-          >
+          <div className='shadow p-3 mb-5 bg-white rounded'>
             <Row style={{ margin: '2rem' }}>
               <Col className='col-3'>
                 <Image
@@ -112,47 +107,69 @@ const Webpage = ({ data }) => {
                     lineHeight: '2.5rem',
                     fontWeight: 'bold'
                   }}
+                  className='mb-2'
                   onClick={() => speak(data.productTitle, speakRate)}
                 >
                   {data.productTitle}
                 </p>
-                <div
-                  style={{
-                    backgroundColor: '#FDFD96',
-                    borderRadius: '5px',
-                    padding: '1rem',
-                    margin: '0.5rem'
-                  }}
-                  onClick={() => speak(`Price: ${data.price}`, speakRate)}
-                >
-                  <p
-                    style={{
-                      fontSize: '1.8rem',
-                      textAlign: 'left',
-                      fontWeight: '600'
-                    }}
-                  >
-                    Price: {data.price}
-                  </p>
-                </div>
-                <div
-                  style={{
-                    backgroundColor: '#AEC6CF',
-                    borderRadius: '5px',
-                    padding: '0.5rem',
-                    margin: '0.5rem',
-                    textAlign: 'left',
-                    width: 'auto'
-                  }}
-                >
-                  {data.ratings.ratingValue ? (
-                    <p
+                <CardDeck className='w-75 my-3'>
+                  {data.price ? (
+                    <Card
                       style={{
-                        display: 'inline',
-                        fontSize: '1.2rem',
-                        textAlign: 'left',
-                        fontWeight: 'bold'
+                        fontSize: '1.8rem'
                       }}
+                      className='py-2 shadow-sm w-25'
+                      onClick={() => speak(`Price: ${data.price}`, speakRate)}
+                    >
+                      <Card.Title
+                        style={{ textAlign: 'left', verticalAlign: 'middle' }}
+                        className='px-3 m-0'
+                      >
+                        Price
+                      </Card.Title>
+                      <Card.Body
+                        style={{
+                          fontSize: '1.8rem',
+                          textAlign: 'right',
+                          verticalAlign: 'middle'
+                        }}
+                        className='py-0 px-3 m-0'
+                      >
+                        {data.price}
+                      </Card.Body>
+                    </Card>
+                  ) : (
+                    <Card
+                      style={{
+                        fontSize: '1.8rem'
+                      }}
+                      className='py-2 shadow-sm w-25'
+                      onClick={() => speak(`No price found`, speakRate)}
+                    >
+                      <Card.Title
+                        style={{ textAlign: 'left', verticalAlign: 'middle' }}
+                        className='px-3 m-0'
+                      >
+                        Price
+                      </Card.Title>
+                      <Card.Body
+                        style={{
+                          fontSize: '1.8rem',
+                          textAlign: 'right',
+                          verticalAlign: 'middle'
+                        }}
+                        className='py-0 px-3 m-0'
+                      >
+                        No price found
+                      </Card.Body>
+                    </Card>
+                  )}
+                  {data.ratings.ratingValue ? (
+                    <Card
+                      style={{
+                        fontSize: '1.8rem'
+                      }}
+                      className='py-2 shadow-sm w-25'
                       onClick={() =>
                         speak(
                           `Rating: ${data.ratings.ratingValue} out of 5, ${data.ratings.ratingCount}`,
@@ -160,74 +177,102 @@ const Webpage = ({ data }) => {
                         )
                       }
                     >
-                      Rating: {data.ratings.ratingValue} out of 5 |{' '}
-                      {data.ratings.ratingCount}
-                    </p>
+                      <Card.Title
+                        style={{ textAlign: 'left', verticalAlign: 'middle' }}
+                        className='px-3 m-0'
+                      >
+                        Rating - {data.ratings.ratingCount}
+                      </Card.Title>
+                      <Card.Body
+                        style={{
+                          textAlign: 'right',
+                          verticalAlign: 'middle'
+                        }}
+                        className='py-0 px-3 m-0'
+                      >
+                        {data.ratings.ratingValue} / 5
+                      </Card.Body>
+                    </Card>
                   ) : (
-                    <p
+                    <Card
                       style={{
-                        display: 'inline',
-                        fontSize: '1.2rem',
-                        textAlign: 'left',
-                        fontWeight: 'bold'
+                        fontSize: '1.8rem'
                       }}
+                      className='py-2 shadow-sm w-25'
                       onClick={() => speak(`No ratings available`, speakRate)}
                     >
-                      No ratings available
-                    </p>
-                  )}
-                </div>
-                <p
-                  className='mt-4'
-                  style={{
-                    fontSize: '1.5rem',
-                    textAlign: 'left',
-                    fontWeight: '600'
-                  }}
-                  onClick={() => speak('Product Description', speakRate)}
-                >
-                  Product Description:
-                </p>
-                <div
-                  style={{
-                    display: 'block',
-                    margin: 'auto',
-                    padding: '1rem 1rem 1rem 1rem',
-                    border: '1px solid black',
-                    borderRadius: '5px'
-                  }}
-                >
-                  {data.descriptions ? (
-                    data.descriptions.map(desc => (
-                      <p
-                        className='mb-4'
-                        style={{
-                          fontSize: '1.3rem',
-                          textAlign: 'left',
-                          lineHeight: '1.8rem',
-                          fontWeight: '500'
-                        }}
-                        onClick={() => speak(desc, speakRate)}
+                      <Card.Title
+                        style={{ textAlign: 'left', verticalAlign: 'middle' }}
+                        className='px-3 m-0'
                       >
-                        {desc}
-                      </p>
-                    ))
-                  ) : (
-                    <p
-                      style={{
-                        fontSize: '1.3rem',
-                        textAlign: 'center',
-                        lineHeight: '1.8rem',
-                        fontWeight: '600'
-                      }}
-                      onClick={() =>
-                        speak('No descriptions for item found', speakRate)
-                      }
-                    >
-                      No descriptions for item found
-                    </p>
+                        Rating
+                      </Card.Title>
+                      <Card.Body
+                        style={{
+                          fontSize: '1.6rem',
+                          textAlign: 'right',
+                          verticalAlign: 'middle'
+                        }}
+                        className='py-0 px-3 m-0'
+                      >
+                        No ratings available
+                      </Card.Body>
+                    </Card>
                   )}
-                </div>
+                </CardDeck>
+                {data.descriptions ? (
+                  <Table className='shadow-sm' striped bordered hover>
+                    <thead>
+                      <tr>
+                        <th
+                          style={{
+                            fontSize: '1.4rem',
+                            textAlign: 'left',
+                            verticalAlign: 'middle',
+                            padding: '0.6rem'
+                          }}
+                          onClick={() =>
+                            speak('Product Description', speakRate)
+                          }
+                        >
+                          Product Description:
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.descriptions.map(desc => (
+                        <tr onClick={() => speak(desc, speakRate)}>
+                          <td
+                            style={{
+                              fontSize: '1.2rem',
+                              textAlign: 'left',
+                              verticalAlign: 'middle',
+                              lineHeight: '1.6rem',
+                              padding: '0.6rem',
+                              fontWeight: '500'
+                            }}
+                          >
+                            {desc}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                ) : (
+                  <p
+                    style={{
+                      fontSize: '1.3rem',
+                      textAlign: 'center',
+                      lineHeight: '1.8rem',
+                      fontWeight: '600'
+                    }}
+                    onClick={() =>
+                      speak('No descriptions for item found', speakRate)
+                    }
+                  >
+                    No descriptions for item found
+                  </p>
+                )}
               </Col>
             </Row>
             <Button
@@ -235,12 +280,13 @@ const Webpage = ({ data }) => {
                 fontSize: '1.4rem'
               }}
               variant='primary'
+              className='shadow'
               onClick={() => window.open(data.url, '_blank')}
               block
             >
               Buy Now!
             </Button>
-          </Jumbotron>
+          </div>
         </Container>
       </div>
       <p style={{ textAlign: 'center' }}>The actual webpage</p>

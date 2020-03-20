@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const puppeteer = require('puppeteer');
+const { performance } = require('perf_hooks');
 
 // All routes other than '/' route will be directed to amazon
 router.route('/gp/*').get((req, res) => {
@@ -26,6 +27,7 @@ router.route('/loadPage').get(async (req, res) => {
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
+
   await page.setRequestInterception(true);
 
   page.on('request', req => {
@@ -39,6 +41,7 @@ router.route('/loadPage').get(async (req, res) => {
       req.continue();
     }
   });
+
   await page.goto(req.query.siteUrl);
   // Processing page data
   const dataObj = {};
