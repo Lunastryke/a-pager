@@ -14,6 +14,8 @@ const UrlForm = ({ setData, data }) => {
   const handleSubmit = async e => {
     if (input) {
       e.preventDefault();
+      setData('');
+      setInput('');
       let result = await loadPage(input);
       setData(result);
     }
@@ -22,29 +24,28 @@ const UrlForm = ({ setData, data }) => {
   function successButtonClick() {
     var elmnt = document.getElementById('scroll_target_1');
     elmnt.scrollIntoView({ behavior: 'smooth' });
+    setFetchingData(false);
   }
 
   function renderSuccessButton() {
-    if (!fetchingData) {
-      return null;
-    } else {
-      return (
-        <div style={{ textAlign: 'center', marginTop: '150px' }}>
-          {data ? (
-            <Button
-              style={{ fontSize: '1.3rem' }}
-              variant='success'
-              onClick={() => successButtonClick()}
-              block
-            >
-              Success! Next!
-            </Button>
-          ) : (
-            <Spinner animation='border' variant='primary' />
-          )}
-        </div>
-      );
-    }
+    return fetchingData ? (
+      <div style={{ textAlign: 'center', marginTop: '150px' }}>
+        {data ? (
+          <Button
+            style={{ fontSize: '1.3rem' }}
+            variant='success'
+            onClick={() => successButtonClick()}
+            block
+          >
+            Success! Next!
+          </Button>
+        ) : (
+          <Spinner animation='border' variant='primary' />
+        )}
+      </div>
+    ) : (
+      <></>
+    );
   }
 
   return (

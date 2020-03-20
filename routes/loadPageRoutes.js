@@ -22,6 +22,7 @@ router.route('/ap/*').post((req, res) => {
 
 router.route('/loadPage').get(async (req, res) => {
   const browser = await puppeteer.launch({
+    userDataDir: './data',
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
