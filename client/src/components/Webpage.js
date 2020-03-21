@@ -36,7 +36,7 @@ const Webpage = ({ data }) => {
   return (
     <>
       <div style={{ textAlign: 'center' }}>
-        <Container className='mb-2' style={{ padding: '200px' }} fluid>
+        <Container className='mb-2' style={{ padding: '5vw' }} fluid>
           <p
             style={{ fontSize: '1.2rem' }}
             id='scroll_target_1'
@@ -112,13 +112,13 @@ const Webpage = ({ data }) => {
                 >
                   {data.productTitle}
                 </p>
-                <CardDeck className='w-75 my-3'>
+                <CardDeck className='my-3'>
                   {data.price ? (
                     <Card
                       style={{
                         fontSize: '1.8rem'
                       }}
-                      className='py-2 shadow-sm w-25'
+                      className='py-2 shadow-sm'
                       onClick={() => speak(`Price: ${data.price}`, speakRate)}
                     >
                       <Card.Title
@@ -143,7 +143,7 @@ const Webpage = ({ data }) => {
                       style={{
                         fontSize: '1.8rem'
                       }}
-                      className='py-2 shadow-sm w-25'
+                      className='py-2 shadow-sm'
                       onClick={() => speak(`No price found`, speakRate)}
                     >
                       <Card.Title
@@ -169,7 +169,7 @@ const Webpage = ({ data }) => {
                       style={{
                         fontSize: '1.8rem'
                       }}
-                      className='py-2 shadow-sm w-25'
+                      className='py-2 shadow-sm'
                       onClick={() =>
                         speak(
                           `Rating: ${data.ratings.ratingValue} out of 5, ${data.ratings.ratingCount}`,
@@ -198,7 +198,7 @@ const Webpage = ({ data }) => {
                       style={{
                         fontSize: '1.8rem'
                       }}
-                      className='py-2 shadow-sm w-25'
+                      className='py-2 shadow-sm'
                       onClick={() => speak(`No ratings available`, speakRate)}
                     >
                       <Card.Title

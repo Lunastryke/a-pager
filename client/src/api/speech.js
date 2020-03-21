@@ -28,6 +28,7 @@ export default function speak(textInput, speakRate) {
     console.error('Already speaking...');
     return;
   }
+
   if (textInput !== '') {
     // Get speak text
     const speakText = new SpeechSynthesisUtterance(textInput);
@@ -36,9 +37,9 @@ export default function speak(textInput, speakRate) {
     speakText.onerror = e => {
       console.error('Something went wrong');
     };
-
+    speakText.lang = 'en-US';
     // Selected voice
-    speakText.voice = voices[0];
+    // speakText.voice = voices[0];
     speakText.rate = speakRate;
 
     // Speak
