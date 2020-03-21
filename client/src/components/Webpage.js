@@ -93,6 +93,7 @@ const Webpage = ({ data }) => {
             <Row style={{ margin: '2rem' }}>
               <Col className='col-3'>
                 <Image
+                  style={{width:'auto', height='auto', objectFit: 'contain' }}
                   src={data.image.imgSrc}
                   alt={data.image.imgAlt}
                   rounded
