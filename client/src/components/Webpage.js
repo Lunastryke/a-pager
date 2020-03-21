@@ -36,7 +36,7 @@ const Webpage = ({ data }) => {
   return (
     <>
       <div style={{ textAlign: 'center' }}>
-        <Container className='mb-2' style={{ padding: '5vw' }} fluid>
+        <Container className='mb-2' style={{ padding: '10px' }} fluid>
           <p
             style={{ fontSize: '1.2rem' }}
             id='scroll_target_1'
