@@ -12,13 +12,13 @@ This project got to the finals of Hack for Good 2020 held by NUS DSC
 ## User guide
 1. Browse to desired product page on [amazon.com](amazon.com)
    
-   [amazonPage]: https://github.com/Lunastryke/a-pager/tree/master/img/amazonpage.JPG "product page"
+   [amazonPage]: https://github.com/Lunastryke/a-pager/blob/master/img/amazonpage.JPG "product page"
 2. Copy URL and paste into A-pager
    
-   [apager]: https://github.com/Lunastryke/a-pager/tree/master/img/apagerpage.JPG "apager page"
+   [apager]: https://github.com/Lunastryke/a-pager/blob/master/img/apagerpage.JPG "apager page"
 3. Page is simplified
 
-    [concisedpage]: https://github.com/Lunastryke/a-pager/tree/master/img/concisedpage.JPG "concised page"
+    [concisedpage]: https://github.com/Lunastryke/a-pager/blob/master/img/concisedpage.JPG "concised page"
    
 
 ## Quick Start
